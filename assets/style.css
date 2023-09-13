@@ -1,8 +1,54 @@
-.previous {
-    text-align: center;
-    
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-.next{
-    text-align: center;
+:root {
+    --hue-neutral: rgb(5, 5, 125) ;
+    --hue-correct: green;
+    --hue-wrong: red;
+}
+
+body {
+    --hue: var(--hue-neutral);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: hsl(var(--hue), 100%, 20%);
+}
+
+body.wrong {
+    --hue: var(--hue-wrong);
+}
+
+body.correct {
+    --hue: var(--hue-correct);
+}
+
+.container{
+    width: 900px;
+    max-width: 85%;
+    background-color: white;
+    border-radius: 7px;
+    padding: 11px;
+    box-shadow: 0 0 10px 3px;
+}
+.btn-answers {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+    margin: 20px 0px 0px 0px;
+}
+
+.btn {
+    --hue: var(--hue-neutral);
+    background-color: hsl(var(--hue), 100%, 20%);
+    border: 1px solid hsl(var(--hue), 100%, 20%);
+    border-radius: 7px;
+    padding: 5px 10px 5px;
+    color: white;
+    outline: none;
 }
