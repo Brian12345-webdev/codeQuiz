@@ -5,16 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles.css">
     <title>Code Quiz</title>
-    <h1 id="">Code Quiz</h1>
+    
 </head>
-<body>
-    <div id="container">
-        ,<div id="carousel">
-            <button id="Start">Start</button>
-            <button id="previous">Previous</button>
-            <button id="next">Next</button>
+<body>   
+        <div class="container">
+            <div id="question-container" class="hide">
+                <div id="question">Question</div>
+                    <div class="btn-answers" class="btn-grid">
+                        <button class="btn">Answer 1</button>
+                        <button class="btn">Answer 2</button>
+                        <button class="btn">Answer 3</button>
+                        <button class="btn">Answer 4</button>
+                    </div>
+            </div>
+            <div class="controls">
+                <button id="start-btn" class="start-btn btn">Start</button>
+                <button id="previos-btn" class="previous-btn btn hide"></button>
+                <button id="next-btn" class="next-btn btn hide"></button>
         </div>
-    </div>
     <script src="./assets/script.js"></script>
 </body>
 </html>
