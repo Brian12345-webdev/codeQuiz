@@ -51,48 +51,4 @@ function showQuestion(question) {
 // timer will be displayed. In upper right corner of page.
 
 
-// add questions to the page. 
-let questionOne = {
-    title: "What does the 'let' declaration do?",
-    alternatives: ["It is a function", "It declares a variable that is bock scoped in JS", "It is an element", "It acts similarly like an event listener"],
-    correctAnswer: 1
-};
-// function to display the question
-function displayQuestion(index) {
-let titleDiv = document.getElementById('title');
-titleDiv.textContent = questionOne.title;
-}
 
-
-
-
-
-function startQuiz() {
-    // Start the timer
-    let time = 60; // Set the initial time value
-  
-    // Display the first question
-    displayQuestion(0); // Assuming you have a function to display questions
-  
-    // Listen for user input or button click events
-    document.addEventListener('click', function(event) {
-      if (event.target.matches('.answer-button')) {
-        const selectedAnswer = event.target.textContent;
-        checkAnswer(selectedAnswer); // Assuming you have a function to check the user's answer
-        displayNextQuestion(); // Assuming you have a function to display the next question
-      }
-    });
-  
-    // Update the timer every second
-    const timerInterval = setInterval(function() {
-      time--;
-      // Update the timer display
-      document.getElementById('timer').textContent = time;
-  
-      // Check if the timer has reached 0
-      if (time === 0) {
-        endQuiz(); // Assuming you have a function to end the quiz
-        clearInterval(timerInterval); // Stop the timer
-      }
-    }, 1000);
-  }

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="stylesheet" href="./style.css">
+    
     <title>Code Quiz</title>
     
 </head>
@@ -20,17 +21,19 @@
             </div>
             <div class="control-btns">
                 <button id="start-btn" class="start-btn btn">Start</button>
-                <button id="previos-btn" class="previous-btn btn hide"></button>
+                <button id="previous-btn" class="previous-btn btn hide"></button>
                 <button id="next-btn" class="next-btn btn hide"></button>
+            </div>
+
+            <div id="score-box" class="score-box">
+                <div id="score">0</div>
+                <div id="high-score">0</div>
+                <button id="reset-btn" class="reset-btn btn">Reset</button>
+                <button id="submit-btn" class="submit-btn btn">Submit</button>
+                <div id="time">00:00</div>
+                <div id="timer" class="timer"></div>
+            </div>
         </div>
-        <div id="score-box" class="score-box">
-            <div id="score">0</div>
-            <div id="high-score">0</div>
-            <button id="reset-btn" class="reset-btn btn">Reset</button>
-            <button id="submit-btn" class="submit-btn btn">Submit</button>
-            <div id="time">00:00</div>
-            <div id="timer" class="timer"></div>
-        </div>
-    <script src="./assets/script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
