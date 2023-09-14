@@ -52,3 +52,39 @@ body.correct {
     color: white;
     outline: none;
 }
+
+.btn:hover{
+    border-color: darkblue transparent;
+}
+
+.btn.correct{
+    --hue: var(--hue-correct)
+    color: green transparent;
+}
+
+.btn.wrong{
+    --hue: var(--hue-wrong);
+    color: red transparent;
+}
+
+.start-btn, .previous-btn, .next-btn{
+    font-size: 2px;
+    font-weight: bold;
+    padding: 5px 10px 5px;
+}
+
+.start-btn:hover, .btn-next-btn:hover, .btn-prev-btn:hover{
+    background-color: darkblue;
+    color: white;
+}
+
+.control-btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide{
+    display: none;
+}
+
