@@ -1,4 +1,4 @@
-// do a function with a confirm prompt to ask the user if they want to start coding quiz
+// do a function to ask the user if they want to start coding quiz
 const startButton = document.getElementById('start-btn')
 const previousButton = document.getElementById('previous-btn')
 const nextButton = document.getElementById('next-btn')
@@ -81,19 +81,44 @@ function selectAnswer(e) {
       element.classList.add('incorrect')
     }
   }
+
+  function clearStatusClasses(element) {
+    element.classList.remove('correct')
+    element.classList.remove('incorrect')
+  }
   
   const questions = [
-    {question: "What does "}
-  ]
-
-
-// button function if (confirm) button pressed start coding quiz.
-// Add ""element".addEventListner("click", function);  to each question.
-// answers that are right or wrong must be counted and a collected percentage total will be displayed.
-// boolean answers that are right or wrong must be counted and a collected percentage total will be displayed.
-// after an answer is clicked it will highlight..
-// once an answer is clicked, the user will go to another button in bottom right of page "next" to go to the next question.
-// timer will be displayed. In upper right corner of page.
-
-
+    { question: "What does CSS stand for?", 
+      answers: [
+        { text: "Cascading Style Sheets", correct: true },
+        { text: "Cascade Special Sauce", correct: false },
+        { text: "Coffee Shirt Stains", correct: false },
+        { text: "Candy Shirt Stains", correct: false }
+  ]},
+    { question: "What does HTML stand for?",
+      answers: [
+        { text: "Have Three Massive Lollipops", correct: false },
+        { text: "Hype Text Management Language", correct: false },
+        { text: "Hyper Text Markup Language", correct: true },
+        { text: "Hello This Markup Language", correct: false }
+  ]},
+    { question: "What is an example of a Math operator?",
+      answers: [
+        { text: "?", correct: false },
+        { text: ".", correct: false },
+        { text: ">", correct: true },
+        { text: "!", correct: false }
+  ]},
+    { question: "What is an example of a conditional statement?",
+      answers: [
+      { text: "once if (true) { console.log('true'); }", correct: false },
+      { text: "Console.log('false') { if (false); }", correct: false },
+      { text: "What if (1) { console.log('1'); }", correct: false },
+      { text: "if (0) { console.log('0'); }", correct: true }
+  ]},
+    { question: "What is an example of a loop statement?",
+      answers: [
+      { text: "for (let i = 0; i < 10; i++) { console.log(i); }", correct: true },
+      { text: "for (let i = 0; i < 10; i++) { console.log(i); }", correct: false }
+    ]}]
 
