@@ -99,7 +99,7 @@ function incrementScore(num) {
     element.classList.remove('incorrect')
   }
 
-  
+
   //questions array
   const questions = [
     { question: "What does CSS stand for?", 
@@ -139,7 +139,6 @@ function incrementScore(num) {
     
     const timer = document.querySelector(".timer");
     function startTimer() {
-      console.log("starttimer");
       if (timer.innerHTML
         === "00:00:00") {
         timer.innerHTML = "00:00:00";
@@ -147,7 +146,7 @@ function incrementScore(num) {
       var secondsLeft = 60;
       var timerInterval = setInterval(function() {
         secondsLeft--;
-        console.log(secondsLeft);
+        
         timer.innerHTML = secondsLeft
         if (secondsLeft <= 0) {
           clearInterval(timerInterval);
@@ -157,42 +156,28 @@ function incrementScore(num) {
         }
       }, 1000);
     }
+      
+//initialize the score
+let score = 0;
 
-    const scoreBoard = document.querySelector(".score-board");
-    function sendMessage() {
-       
-      var message = document.getElementById("message");
-      message.textContent = "";
-      message.appendChild(document.createTextNode("Your score is: " + scoreBoard.textContent));
-      message.appendChild(document.createElement("br"));}
-
-
-
-
-
-
-//     // set timer
-// var timeEl = document.querySelector(".time");
-
-// // Selects element by id
-// var mainEl = document.getElementById("main");
-
-// var seconLeft = 5;
-
-// function setTime() {
+function checkAnswer(e) {
+  const selectedButton = e.target
+  const correct = selectedButton.dataset.correct
+  console.log(correct);
+  if (correct) {
+    incrementScore(11);
+  }
+  sendMessage("That is correct!");
   
-//   var timerInterval = setInterval(function() {
-//     secondsLeft--;
-//     timeEl.textContent = secondsLeft + " ";
-
-//     if(secondsLeft === 0) {
-//       // Stops execution of action at set interval
-//       clearInterval(timerInterval);
-//       // Calls function to create and append image
-//       sendMessage();
-//     }
-
-//   }, 1000);
-// }
-
-// setTime();
+}
+//display score
+ function displayScore() {
+  const scoreBoard = document.querySelector(".score-board");
+  scoreBoard.innerHTML = score;
+  console.log(score);
+  if (score === 5) {
+    clearInterval(timerInterval);
+    startButton.innerText = "Restart"
+    startButton.classList.remove('hide')
+  }
+}
