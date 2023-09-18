@@ -17,7 +17,7 @@ previousButton.addEventListener('click', () => {
   setNextQuestion()
 })
 nextButton.addEventListener('click', () => {
-  currentQuestionIndex++ 
+  currentQuestionIndex++
   setNextQuestion()
 })
 //startQuiz function
@@ -28,17 +28,17 @@ function startQuiz() {
   currentQuestionIndex = 0
   questionContainer.classList.remove('hide')
   setNextQuestion()
-//setting questions
+  //setting questions
 }
 function setNextQuestion() {
   resetState()
 
   showQuestion(shuffleQuestions[currentQuestionIndex])
 }
-//show question function with if satatement
+//show question function with if statement
 function showQuestion(question) {
-  questionElement.innerText = 
-  question.question
+  questionElement.innerText =
+    question.question
   question.answers.forEach(answer => {
     const button = document.createElement('button')
     button.innerText = answer.text
@@ -46,7 +46,7 @@ function showQuestion(question) {
     if (answer.correct) {
       button.dataset.correct = answer.correct
     }
-    
+
     button.addEventListener('click', selectAnswer)
     answerButtonsElement.appendChild(button)
   })
@@ -59,104 +59,121 @@ function resetState() {
   nextButton.classList.add('hide')
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-}}
+  }
+}
 //selecting target answer from array remove hides
 function selectAnswer(e) {
   const selectedButton = e.target
-  const correct = selectedButton.dataset.correct  
-   setStatusClasses(document.body, correct)
-
-   Array.from(answerButtonsElement.children).forEach(button => {
+  const correct = selectedButton.dataset.correct
+  setStatusClasses(document.body, correct)
+  if (correct) {
+    correctAnswer++
+  }
+  setStatusClasses(document.body, correctAnswer)
+  Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClasses(button, button.dataset.correct)
-   })
-   if (shuffleQuestions.length > currentQuestionIndex + 1) {
+  })
+  if (shuffleQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
     previousButton.classList.remove('hide')
-   } else {
+  } else {
+    display(correctAnswer.toString() + "/" + shuffleQuestions.length.toString())
+    correctAnswer = 0
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
-   }}
-   
+  }
+}
+
 //answer status
 function setStatusClasses(element, correct) {
-  
-    clearStatusClasses(element)
-    if (correct) {
-      element.classList.add('correct')
+
+  clearStatusClasses(element)
+  if (correct) {
+    element.classList.add('correct')
       + score++
-    } else {
-      element.classList.add('incorrect')
-    }
+  } else {
+    element.classList.add('incorrect')
   }
+}
 //increment score function
 function incrementScore(num) {
-  score +=num
+  score += num
   finalScoreElement.innerText = score
 }
 
-  function clearStatusClasses(element) {
-    element.classList.remove('correct')
-    element.classList.remove('incorrect')
-  }
+function clearStatusClasses(element) {
+  element.classList.remove('correct')
+  element.classList.remove('incorrect')
+}
 
 
-  //questions array
-  const questions = [
-    { question: "What does CSS stand for?", 
-      answers: [
-        { text: "Cascading Style Sheets", correct: true },
-        { text: "Cascade Special Sauce", correct: false },
-        { text: "Coffee Shirt Stains", correct: false },
-        { text: "Candy Shirt Stains", correct: false }
-  ]},
-    { question: "What does HTML stand for?",
-      answers: [
-        { text: "Have Three Massive Lollipops", correct: false },
-        { text: "Hype Text Management Language", correct: false },
-        { text: "Hyper Text Markup Language", correct: true },
-        { text: "Hello This Markup Language", correct: false }
-  ]},
-    { question: "What is an example of a Math operator?",
-      answers: [
-        { text: "?", correct: false },
-        { text: ".", correct: false },
-        { text: ">", correct: true },
-        { text: "!", correct: false }
-  ]},
-    { question: "What is an example of a conditional statement?",
-      answers: [
+//questions array
+const questions = [
+  {
+    question: "What does CSS stand for?",
+    answers: [
+      { text: "Cascading Style Sheets", correct: true },
+      { text: "Cascade Special Sauce", correct: false },
+      { text: "Coffee Shirt Stains", correct: false },
+      { text: "Candy Shirt Stains", correct: false }
+    ]
+  },
+  {
+    question: "What does HTML stand for?",
+    answers: [
+      { text: "Have Three Massive Lollipops", correct: false },
+      { text: "Hype Text Management Language", correct: false },
+      { text: "Hyper Text Markup Language", correct: true },
+      { text: "Hello This Markup Language", correct: false }
+    ]
+  },
+  {
+    question: "What is an example of a Math operator?",
+    answers: [
+      { text: "?", correct: false },
+      { text: ".", correct: false },
+      { text: ">", correct: true },
+      { text: "!", correct: false }
+    ]
+  },
+  {
+    question: "What is an example of a conditional statement?",
+    answers: [
       { text: "once if (true) { console.log('true'); }", correct: false },
       { text: "Console.log('false') { if (false); }", correct: false },
       { text: "What if (1) { console.log('1'); }", correct: false },
       { text: "if (0) { console.log('0'); }", correct: true }
-  ]},
-    { question: "What is an example of a loop statement?",
-      answers: [
+    ]
+  },
+  {
+    question: "What is an example of a loop statement?",
+    answers: [
       { text: "for (let i = 0; i < 10; i++) { console.log(i); }", correct: true },
       { text: "while for (let i = 0; i < 10; i++) { console.log(i); }", correct: false }
-    ]}]
+    ]
+  }]
 
-    
-    const timer = document.querySelector(".timer");
-    function startTimer() {
-      if (timer.innerHTML
-        === "00:00:00") {
-        timer.innerHTML = "00:00:00";
-      }
-      var secondsLeft = 60;
-      var timerInterval = setInterval(function() {
-        secondsLeft--;
-        
-        timer.innerHTML = secondsLeft
-        if (secondsLeft <= 0) {
-          clearInterval(timerInterval);
-          startButton.innerText = "Restart"
-          startButton.classList.remove('hide')
 
-        }
-      }, 1000);
+const timer = document.querySelector(".timer");
+function startTimer() {
+  if (timer.innerHTML
+    === "00:00:00") {
+    timer.innerHTML = "00:00:00";
+  }
+  var secondsLeft = 60;
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+
+    timer.innerHTML = secondsLeft
+    if (secondsLeft <= 0) {
+      clearInterval(timerInterval);
+      startButton.innerText = "Restart"
+      startButton.classList.remove('hide')
+
     }
-      
+  }, 1000);
+}
+
 //initialize the score
 let score = 0;
 
@@ -168,10 +185,10 @@ function checkAnswer(e) {
     incrementScore(11);
   }
   sendMessage("That is correct!");
-  
+
 }
 //display score
- function displayScore() {
+function displayScore() {
   const scoreBoard = document.querySelector(".score-board");
   scoreBoard.innerHTML = score;
   console.log(score);
