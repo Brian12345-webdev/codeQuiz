@@ -84,7 +84,7 @@ function selectAnswer(e) {
     startButton.classList.remove('hide')
   }
 }
-function display() {
+function display(message) {
   finalScoreElement.innerText = 
   "You got " + message + " out of " + shuffleQuestions.length + " questions correct!"
 }
