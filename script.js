@@ -7,9 +7,9 @@ const nextButton = document.getElementById('next-btn')
 const answerButtonsElement = document.getElementById('btn-answers')
 const finalScoreElement = document.getElementById('final-score')
 let correctAnswerCount = 0
-const saveScoreBtn = document.getElementById('save-score-btn')
-const initialsElement = document.getElementById('initials')
-const saveHighScores = JSON.parse(localStorage.getItem('highScores')) || [];
+// const saveScoreBtn = document.getElementById('save-score-btn')
+// const initialsElement = document.getElementById('initials')
+// const saveHighScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 // shuffle array of questions
 let shuffleQuestions, currentQuestionIndex
@@ -90,20 +90,15 @@ function selectAnswer(e) {
 
 //answer status
 function setStatusClasses(element, correct) {
-
   clearStatusClasses(element)
   if (correct) {
     element.classList.add('correct')
       + score++
   } else {
     element.classList.add('incorrect')
+      + score
   }
 }
-//increment score function
-// function incrementScore(num) {
-//   score += num
-//   finalScoreElement.innerText = score
-// }
 
 function clearStatusClasses(element) {
   element.classList.remove('correct')
@@ -116,44 +111,44 @@ const questions = [
   {
     question: "What does CSS stand for?",
     answers: [
-      { text: "Cascading Style Sheets", correct: true },
-      { text: "Cascade Special Sauce", correct: false },
-      { text: "Coffee Shirt Stains", correct: false },
-      { text: "Candy Shirt Stains", correct: false }
+      { text: "Cascading Style Sheets", correct: true, points: 1 },
+      { text: "Cascade Special Sauce", correct: false, points: 0 },
+      { text: "Coffee Shirt Stains", correct: false, points: 0 },
+      { text: "Candy Shirt Stains", correct: false, points: 0 },
     ]
   },
   {
     question: "What does HTML stand for?",
     answers: [
-      { text: "Have Three Massive Lollipops", correct: false },
-      { text: "Hype Text Management Language", correct: false },
-      { text: "Hyper Text Markup Language", correct: true },
-      { text: "Hello This Markup Language", correct: false }
+      { text: "Have Three Massive Lollipops", correct: false, points: 0 },
+      { text: "Hype Text Management Language", correct: false, points: 0 },
+      { text: "Hyper Text Markup Language", correct: true, points: 1 },
+      { text: "Hello This Markup Language", correct: false, points: 0 }
     ]
   },
   {
     question: "What is an example of a Math operator?",
     answers: [
-      { text: "?", correct: false },
-      { text: ".", correct: false },
-      { text: ">", correct: true },
-      { text: "!", correct: false }
+      { text: "?", correct: false, points: 0 },
+      { text: ".", correct: false, points: 0 },
+      { text: ">", correct: true, points: 1 },
+      { text: "!", correct: false, points: 0 }
     ]
   },
   {
     question: "What is an example of a conditional statement?",
     answers: [
-      { text: "once if (true) { console.log('true'); }", correct: false },
-      { text: "Console.log('false') { if (false); }", correct: false },
-      { text: "What if (1) { console.log('1'); }", correct: false },
-      { text: "if (0) { console.log('0'); }", correct: true }
+      { text: "once if (true) { console.log('true'); }", correct: false, points: 0 },
+      { text: "Console.log('false') { if (false); }", correct: false, points: 0 },
+      { text: "What if (1) { console.log('1'); }", correct: false, points: 0 },
+      { text: "if (0) { console.log('0'); }", correct: true, points: 1 }
     ]
   },
   {
     question: "What is an example of a loop statement?",
     answers: [
-      { text: "for (let i = 0; i < 10; i++) { console.log(i); }", correct: true },
-      { text: "while for (let i = 0; i < 10; i++) { console.log(i); }", correct: false }
+      { text: "for (let i = 0; i < 10; i++) { console.log(i); }", correct: true, points: 1 },
+      { text: "while for (let i = 0; i < 10; i++) { console.log(i); }", correct: false, points: 0 }
     ]
   }]
 
@@ -185,15 +180,8 @@ let score = 0;
 function checkAnswer(e) {
   const selectedButton = e.target
   const correct = selectedButton.dataset.correct
-  console.log(correct);
   if (correct) {
     incrementScore(11);
-  }
-
-  function resetScore() {
-    if (resetScoreBtn.innerText === "Restart") {
-      document.querySelector(".score-board").innerHTML = score
-    }
   }
 
 }
