@@ -15,5 +15,9 @@ THIS APPLICATION contains questions that will test the users knowledge about pro
 ##SITE ACCESS
 
 #SITE:
+https://brian12345-webdev.github.io/codeQuiz/
 
 #GITHUB:
+https://github.com/Brian12345-webdev/codeQuiz
+
+![Alt text](image.png)

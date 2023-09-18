@@ -78,16 +78,13 @@ function selectAnswer(e) {
     nextButton.classList.remove('hide')
     previousButton.classList.remove('hide')
   } else {
-    display(correctAnswerCount.toString() + "/" + shuffleQuestions.length.toString())
+    displayScore(correctAnswerCount.toString() + "/" + shuffleQuestions.length.toString())
     correctAnswerCount = 0
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
   }
 }
-function display(message) {
-  finalScoreElement.innerText = 
-  "You got " + message + " out of " + shuffleQuestions.length + " questions correct!"
-}
+
 
 //answer status
 function setStatusClasses(element, correct) {
@@ -195,8 +192,7 @@ function checkAnswer(e) {
 //display score
 function displayScore() {
   const scoreBoard = document.querySelector(".score-board");
-  scoreBoard.innerHTML = score;
-  console.log(score);
+  scoreBoard.innerHTML = score + "/" + questions.length.toString() + " correct" + scoreBoard.innerHTML;
   if (score === 5) {
     clearInterval(timerInterval);
     startButton.innerText = "Restart"
