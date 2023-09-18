@@ -6,6 +6,7 @@ const questionElement = document.getElementById('question')
 const nextButton = document.getElementById('next-btn')
 const answerButtonsElement = document.getElementById('btn-answers')
 const finalScoreElement = document.getElementById('final-score')
+let correctAnswerCount = 0
 
 // shuffle array of questions
 let shuffleQuestions, currentQuestionIndex
@@ -67,9 +68,9 @@ function selectAnswer(e) {
   const correct = selectedButton.dataset.correct
   setStatusClasses(document.body, correct)
   if (correct) {
-    correctAnswer++
+    correctAnswerCount++
   }
-  setStatusClasses(document.body, correctAnswer)
+  setStatusClasses(document.body, correctAnswerCount)
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClasses(button, button.dataset.correct)
   })
@@ -77,11 +78,15 @@ function selectAnswer(e) {
     nextButton.classList.remove('hide')
     previousButton.classList.remove('hide')
   } else {
-    display(correctAnswer.toString() + "/" + shuffleQuestions.length.toString())
-    correctAnswer = 0
+    display(correctAnswerCount.toString() + "/" + shuffleQuestions.length.toString())
+    correctAnswerCount = 0
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
   }
+}
+function display() {
+  finalScoreElement.innerText = 
+  "You got " + message + " out of " + shuffleQuestions.length + " questions correct!"
 }
 
 //answer status
