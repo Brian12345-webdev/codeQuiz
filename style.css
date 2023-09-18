@@ -85,3 +85,10 @@ body {
     display: none;
 }
 
+button{
+    outline: none;
+    border: none;
+    background-color: blueviolet;
+    border-radius: 10px 10px 10px 10px;
+    color: white;
+}
