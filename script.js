@@ -186,7 +186,6 @@ function checkAnswer(e) {
   if (correct) {
     incrementScore(11);
   }
-  sendMessage("That is correct!");
 
 }
 //display score
@@ -195,6 +194,7 @@ function displayScore() {
   scoreBoard.innerHTML = score + "/" + questions.length.toString() + " correct" + scoreBoard.innerHTML;
   if (score === 5) {
     clearInterval(timerInterval);
+    clearStatusClasses(scoreClass + " correct " + score + " incorrect");
     startButton.innerText = "Restart"
     startButton.classList.remove('hide')
   }
