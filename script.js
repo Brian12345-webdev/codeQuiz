@@ -100,10 +100,10 @@ function setStatusClasses(element, correct) {
   }
 }
 //increment score function
-function incrementScore(num) {
-  score += num
-  finalScoreElement.innerText = score
-}
+// function incrementScore(num) {
+//   score += num
+//   finalScoreElement.innerText = score
+// }
 
 function clearStatusClasses(element) {
   element.classList.remove('correct')
@@ -190,6 +190,12 @@ function checkAnswer(e) {
     incrementScore(11);
   }
 
+  function resetScore() {
+    if (resetScoreBtn.innerText === "Restart") {
+      document.querySelector(".score-board").innerHTML = score
+    }
+  }
+
 }
 //display score
 function displayScore() {
@@ -203,24 +209,28 @@ function displayScore() {
   }
 }
 
-finalScoreElement.innerTEXT = score;
+// initialsElement.addEventListener("keyup", () => {
+//   saveScoreBtn.disabled = !initialsElement.value;
+// });
 
-initialsElement.addEventListener("keyup", () => {
-  saveScoreBtn.disabled = !initialsElement.value;
-});
+// saveHighScores = e => {
+//   console.log("save btn clicked");
+//   e.preventDefault();
 
-saveHighScores = e => {
-  console.log("save btn clicked");
-  e.preventDefault();
+//   const savedScore = {
+//     savedScore: score,
+//     initials: initialsElement.value
+//   };
+//   saveHighScores.push(savedScore);
 
-  const savedScore = {
-    savedScore: score,
-    initials: initialsElement.value
-  };
-  saveHighScores.push(savedScore);
+//   saveHighScores.sort((a, b) => b.savedScore - a.savedScore)
 
-  saveHighScores.sort((a, b) => b.savedScore - a.savedScore)
-  
-};
+//   saveHighScores.splice(5);
+
+//   localStorage.setItem("highScores", JSON.stringify(saveHighScores));
+//   window.location.assign("/");
+
+
+// };
 
 
