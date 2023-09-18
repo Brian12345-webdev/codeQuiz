@@ -7,6 +7,9 @@ const nextButton = document.getElementById('next-btn')
 const answerButtonsElement = document.getElementById('btn-answers')
 const finalScoreElement = document.getElementById('final-score')
 let correctAnswerCount = 0
+const saveScoreBtn = document.getElementById('save-score-btn')
+const initialsElement = document.getElementById('initials')
+const saveHighScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 // shuffle array of questions
 let shuffleQuestions, currentQuestionIndex
@@ -56,7 +59,6 @@ function showQuestion(question) {
 function resetState() {
   clearStatusClasses(document.body)
   previousButton.classList.add('hide')
-
   nextButton.classList.add('hide')
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild)
@@ -157,6 +159,7 @@ const questions = [
 
 
 const timer = document.querySelector(".timer");
+
 function startTimer() {
   if (timer.innerHTML
     === "00:00:00") {
@@ -191,11 +194,33 @@ function checkAnswer(e) {
 //display score
 function displayScore() {
   const scoreBoard = document.querySelector(".score-board");
-  scoreBoard.innerHTML = score + "/" + questions.length.toString() + " correct" + scoreBoard.innerHTML;
+  scoreBoard.innerHTML = score + " points"
   if (score === 5) {
-    clearInterval(timerInterval);
+    clearStatusClasses(scoreBoard.innerHTML);
     clearStatusClasses(scoreClass + " correct " + score + " incorrect");
     startButton.innerText = "Restart"
     startButton.classList.remove('hide')
   }
 }
+
+finalScoreElement.innerTEXT = score;
+
+initialsElement.addEventListener("keyup", () => {
+  saveScoreBtn.disabled = !initialsElement.value;
+});
+
+saveHighScores = e => {
+  console.log("save btn clicked");
+  e.preventDefault();
+
+  const savedScore = {
+    savedScore: score,
+    initials: initialsElement.value
+  };
+  saveHighScores.push(savedScore);
+
+  saveHighScores.sort((a, b) => b.savedScore - a.savedScore)
+  
+};
+
+
