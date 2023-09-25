@@ -7,6 +7,8 @@ const nextButton = document.getElementById('next-btn')
 const answerButtonsElement = document.getElementById('btn-answers')
 const finalScoreElement = document.getElementById('final-score')
 let correctAnswerCount = 0
+const scoreBoard = document.getElementById('score-board')
+var secondsLeft = 10;
 // const saveScoreBtn = document.getElementById('save-score-btn')
 // const initialsElement = document.getElementById('initials')
 // const saveHighScores = JSON.parse(localStorage.getItem('highScores')) || [];
@@ -23,6 +25,10 @@ previousButton.addEventListener('click', () => {
 nextButton.addEventListener('click', () => {
   currentQuestionIndex++
   setNextQuestion()
+  if (currentQuestionIndex === shuffleQuestions.length) {
+    endQuiz()
+  }
+
 })
 //startQuiz function
 function startQuiz() {
@@ -84,6 +90,7 @@ function selectAnswer(e) {
     correctAnswerCount = 0
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
+    secondsLeft = 0
   }
 }
 
@@ -93,10 +100,8 @@ function setStatusClasses(element, correct) {
   clearStatusClasses(element)
   if (correct) {
     element.classList.add('correct')
-      + score++
   } else {
     element.classList.add('incorrect')
-      + score
   }
 }
 
@@ -155,12 +160,11 @@ const questions = [
 
 const timer = document.querySelector(".timer");
 
+
+
 function startTimer() {
-  if (timer.innerHTML
-    === "00:00:00") {
-    timer.innerHTML = "00:00:00";
-  }
-  var secondsLeft = 60;
+  
+  
   var timerInterval = setInterval(function () {
     secondsLeft--;
 
@@ -169,7 +173,7 @@ function startTimer() {
       clearInterval(timerInterval);
       startButton.innerText = "Restart"
       startButton.classList.remove('hide')
-
+      timer.innerHTML = "0"
     }
   }, 1000);
 }
@@ -196,29 +200,3 @@ function displayScore() {
     startButton.classList.remove('hide')
   }
 }
-
-// initialsElement.addEventListener("keyup", () => {
-//   saveScoreBtn.disabled = !initialsElement.value;
-// });
-
-// saveHighScores = e => {
-//   console.log("save btn clicked");
-//   e.preventDefault();
-
-//   const savedScore = {
-//     savedScore: score,
-//     initials: initialsElement.value
-//   };
-//   saveHighScores.push(savedScore);
-
-//   saveHighScores.sort((a, b) => b.savedScore - a.savedScore)
-
-//   saveHighScores.splice(5);
-
-//   localStorage.setItem("highScores", JSON.stringify(saveHighScores));
-//   window.location.assign("/");
-
-
-// };
-
-
